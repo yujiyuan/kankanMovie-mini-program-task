@@ -1,0 +1,51 @@
+.user-page {
+  padding: 50rpx;
+  display: flex;
+  flex-flow: column nowrap;
+  place-content: center;
+  align-items: center; }
+  .user-page .collection-film-review {
+    font-size: 28rpx;
+    color: #F7B99C;
+    text-align: center;
+    padding: 100rpx 0; }
+    .user-page .collection-film-review .fa {
+      font-size: 32rpx;
+      margin-left: 15rpx; }
+  .user-page .film-review-list {
+    height: 764rpx; }
+    .user-page .film-review-list .film-review-item {
+      display: flex;
+      flex-flow: row nowrap;
+      place-content: flex-start;
+      align-items: flex-start;
+      margin-bottom: 50rpx; }
+      .user-page .film-review-list .film-review-item .film-review-img {
+        width: 170rpx;
+        height: 292rpx; }
+      .user-page .film-review-list .film-review-item .film-review-info {
+        flex: 1;
+        background: #fff;
+        padding: 30rpx; }
+        .user-page .film-review-list .film-review-item .film-review-info .film-name {
+          font-size: 32rpx; }
+        .user-page .film-review-list .film-review-item .film-review-info .film-review-audio {
+          width: 235rpx;
+          font-size: 30rpx;
+          padding: 10rpx 50rpx;
+          margin: 25rpx 0;
+          background: #DBE2E8;
+          border-radius: 5rpx;
+          border: 1rpx solid #CBD5DD; }
+          .user-page .film-review-list .film-review-item .film-review-info .film-review-audio .fa {
+            margin-right: 5rpx; }
+
+.go-back-index {
+  border-top: 1rpx solid #EBEFF2;
+  background: #fff;
+  color: #94A9BB;
+  font-size: 32rpx;
+  padding: 30rpx;
+  text-align: center; }
+
+/*# sourceMappingURL=user.wxss.map */

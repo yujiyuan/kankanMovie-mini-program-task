@@ -1,0 +1,85 @@
+{
+	"client": "client/",
+	"svr": "server/",
+	"miniprogramRoot": "client/",
+	"qcloudRoot": "server/",
+	"setting": {
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
+	},
+	"appid": "wx96858677bd48de2d",
+	"projectname": "2",
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 7,
+			"list": [
+				{
+					"id": -1,
+					"name": "db guide",
+					"pathName": "pages/databaseGuide/databaseGuide",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "我的",
+					"pathName": "pages/user/user",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "电影详情",
+					"pathName": "pages/detail/detail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "编辑影评",
+					"pathName": "pages/editFilmReview/editFilmReview",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "影评详情",
+					"pathName": "pages/filmReviewDetail/filmReviewDetail",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "影评预览",
+					"pathName": "pages/filmReview/filmReview",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "影评列表",
+					"pathName": "pages/filmReviewList/filmReviewList",
+					"query": ""
+				},
+				{
+					"id": -1,
+					"name": "热门电影",
+					"pathName": "pages/filmList/filmList"
+				}
+			]
+		}
+	}
+}

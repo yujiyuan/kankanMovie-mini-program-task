@@ -1,0 +1,21 @@
+<!--pages/recommend/recommend.wxml-->
+<view class="recommend-pages">
+    <view class="movie-poster">
+        <image class="poster-img" src="/images/p2517753454.jpg" bind:tap="onTapToDetail"></image>
+        <view class="poster-text">复仇者联盟3：无限战争</view>
+        <view class="recommend-person">
+            <image class="avatar" src="/images/p2517753454.jpg" bind:tap="onTapToFilmReviewDetail"></image>
+            <text>余慧珍给你推荐了一部电影</text>
+        </view>
+    </view>
+    <view class="bottom-navigation">
+        <view class="popular" bind:tap="onTapToPopular">
+            <text class="fa fa-thumbs-o-up"></text>
+            <text>热门</text>
+        </view>
+        <view class="user" bind:tap="onTapToUser">
+            <text class="fa fa-user-o"></text>
+            <text>我的</text>
+        </view>
+    </view>
+</view>

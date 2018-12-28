@@ -1,0 +1,15 @@
+<!--pages/filmReviewList/filmReviewList.wxml-->
+<view class="film-review-list-page">
+    <scroll-view scroll-y class="film-review-list" >
+        <view class="film-review-item" bind:tap="onTapToFilmReviewDetail">
+            <view>
+                <image class="avatar" src="/images/p2517753454.jpg"></image>
+                <text>余慧珍的影评</text>
+            </view>
+            <view class="film-review-text">时代公司的客观上大概就是大概就是的根深蒂固的过分岁的根深蒂固第三个第三个岁的根深蒂固</view>
+         </view>
+    </scroll-view>
+    <view class="bottom-navigation" bind:tap="goBackIndex">
+        <view >回到首页</view>
+    </view>
+</view>

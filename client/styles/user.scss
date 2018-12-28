@@ -1,0 +1,50 @@
+.user-page{
+    padding: 50rpx;
+    display: flex;
+    flex-flow: column nowrap;
+    place-content: center;
+    align-items: center;
+    .collection-film-review{
+        font-size: 28rpx;
+        color: #F7B99C;
+        text-align: center;
+        padding: 100rpx 0;
+        .fa {
+            font-size: 32rpx;
+            margin-left: 15rpx;
+        }
+    }
+    .film-review-list {
+        height: 764rpx;
+        .film-review-item{
+            display: flex;
+            flex-flow: row nowrap;
+            place-content: flex-start;
+            align-items: flex-start;
+            margin-bottom: 50rpx;
+            .film-review-img {
+                width: 170rpx;
+                height: 292rpx;
+            }
+            .film-review-info {
+                // height: 240rpx;
+                flex:1;
+                background: #fff;
+                padding: 30rpx;
+                .film-name{
+                    font-size: 32rpx;
+                }
+                
+            }
+        }
+    }
+    
+}
+.go-back-index {
+    border-top: 1rpx solid #EBEFF2;
+    background: #fff;
+    color: #94A9BB;
+    font-size: 32rpx;
+    padding: 30rpx;
+    text-align: center;
+}

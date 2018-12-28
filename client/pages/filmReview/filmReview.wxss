@@ -1,0 +1,12 @@
+.commit-text {
+  display: flex;
+  padding-left: 20rpx; }
+  .commit-text .quote {
+    width: 30rpx;
+    font-size: 80rpx; }
+  .commit-text .film-main {
+    padding-top: 20rpx;
+    padding-left: 40rpx;
+    height: 400rpx !important; }
+
+/*# sourceMappingURL=filmReview.wxss.map */

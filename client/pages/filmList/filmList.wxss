@@ -1,0 +1,21 @@
+.film-list-page {
+  padding: 50rpx; }
+  .film-list-page .film-list .film-item {
+    background: #fff;
+    display: flex;
+    margin-bottom: 50rpx; }
+    .film-list-page .film-list .film-item .film-poster {
+      width: 150rpx;
+      height: 210rpx; }
+    .film-list-page .film-list .film-item .info {
+      padding: 40rpx 50rpx; }
+      .film-list-page .film-list .film-item .info > view {
+        font-size: 28rpx;
+        margin-bottom: 50rpx; }
+        .film-list-page .film-list .film-item .info > view.film-name {
+          font-size: 32rpx;
+          font-weight: bold; }
+        .film-list-page .film-list .film-item .info > view:last-child {
+          margin-bottom: 0; }
+
+/*# sourceMappingURL=filmList.wxss.map */

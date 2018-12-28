@@ -1,0 +1,25 @@
+<!--pages/user/user.wxml-->
+<view class="user-page">
+    <view class="collection-film-review">
+        <text >收藏的影评</text>
+        <text class="fa fa-angle-down"></text>
+    </view>
+    <scroll-view class="film-review-list">
+        <view class="film-review-item">
+            <image class="film-review-img" src="/images/p2517753454.jpg" ></image>
+            <view class="film-review-info">
+                <view class="film-name">复仇者联盟3：无限战争</view>
+                <view class="film-review-audio" bind:tap="play">
+                    <text class="fa fa-play-circle"></text>
+                    <text>15s</text>
+                </view>
+                <view class="user">
+                    <image class="avatar" src="/images/p2517753454.jpg"></image>
+                    <text >余慧珍</text>
+                </view>
+            </view>
+        </view>
+    </scroll-view>
+    
+</view>
+<view class="go-back-index" bind:tap="onTapGoBackIndex">回到首页</view>

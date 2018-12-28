@@ -1,0 +1,95 @@
+@import "./base.scss";
+page{
+     background: #F7F9FB;
+}
+.avatar {
+                width:80rpx;
+                height: 80rpx;
+                border-radius: 50%;
+                vertical-align: middle;
+                margin-right: 20rpx;
+            }
+            .text-center {
+                text-align: center;
+            }
+ .bottom-navigation{
+        border-top: 1rpx solid #E6EBEF;
+        background: #fff;
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        right: 0;
+        display: flex;
+        flex-flow: row nowrap;
+        place-content: flex-start;
+        align-items: flex-start;
+        >view {
+            flex: 1;
+            text-align: center;
+            padding: 30rpx;
+            font-size: 30rpx;
+            color: #94A9BB;
+            .fa {
+                margin-right: 15rpx;
+            }
+        }
+ }
+ .detail-page{
+    padding: 100rpx 35rpx 50rpx;
+    .detail-main-box{
+        border: 1rpx solid #EBEFF2;
+        border-radius: 5rpx;
+        background: #fff;
+        position: relative;
+        padding-top: 220rpx;
+        .film-poster{
+            width:190rpx;
+            height:280rpx;
+            position: absolute;
+            top: -80rpx;
+            left: 50%;
+            transform: translateX(-50%);
+        }
+        .film-synopsis {
+            font-size: 30rpx;
+            padding: 0 100rpx 120rpx;
+            .film-name{
+                font-size: 36rpx;
+                font-weight: bold;
+                text-align: center;
+                margin-bottom: 40rpx;
+            }
+            .film-main {
+                height:485rpx;
+               display: -webkit-box;
+                -webkit-box-orient: vertical;
+                -webkit-line-clamp: 10;
+                overflow: hidden;
+            }
+        }
+        .film-review-btns {
+            display: flex;
+            padding: 0 80rpx 50rpx;
+            >button {
+                font-size: 28rpx;
+                color: #94A9BB;
+                background: #fff;
+                i{
+                    margin-right: 20rpx;
+                }
+            }
+        }
+    }
+}
+.film-review-audio{
+                    width: 235rpx;
+                    font-size: 30rpx;
+                    padding: 10rpx 50rpx;
+                    margin: 25rpx 0;
+                    background: #DBE2E8;
+                    border-radius: 5rpx;
+                    border: 1rpx solid #CBD5DD;
+                    .fa {
+                        margin-right: 5rpx;
+                    }
+                }

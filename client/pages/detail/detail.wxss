@@ -1,0 +1,11 @@
+.film-review-btns {
+  display: flex;
+  padding: 0 80rpx 50rpx; }
+  .film-review-btns > button {
+    font-size: 28rpx;
+    color: #94A9BB;
+    background: #fff; }
+    .film-review-btns > button i {
+      margin-right: 20rpx; }
+
+/*# sourceMappingURL=detail.wxss.map */

@@ -1,0 +1,21 @@
+.film-review-list-page{
+    padding-top: 50rpx;
+    .film-review-list{
+        height: 1050rpx;
+        .film-review-item {
+            background: #fff;
+            padding: 50rpx 150rpx 50rpx 100rpx;
+            text{
+                 color: #94A9BB;
+            }
+            .film-review-text{
+                margin-top: 25rpx;
+                overflow: hidden;
+                text-overflow:ellipsis;
+                white-space: nowrap;
+                font-size: 28rpx;
+            }
+        }
+    }
+   
+}

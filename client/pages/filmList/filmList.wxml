@@ -1,0 +1,14 @@
+<!--pages/filmList/filmList.wxml-->
+<view class="film-list-page">
+    <scroll-view scroll-y class="film-list">
+        <block wx:for="{{list}}">
+            <view class="film-item" data-id="{{item.id}}" bind:tap="onTapToFilmDetail">
+                <image src="{{item.image}}" class="film-poster"></image>
+                <view class="info">
+                    <view class="film-name">{{item.title}}</view>
+                    <view class="film-category">类型：{{item.category}}</view>
+                </view>
+            </view>
+        </block>
+    </scroll-view>
+</view>

@@ -1,0 +1,14 @@
+<!--pages/detail/detail.wxml-->
+<view class="detail-page">
+    <view class="detail-main-box">
+        <image class="film-poster" src="/images/p2517753454.jpg"></image>
+        <view class="film-synopsis">
+            <view class="film-name">复仇者联盟3：无限战争</view>
+            <view class="film-main">单身狗坚实的火龙果速度快就更好了速度快该代理商开个会理科生道格拉斯的快感和塑料袋可感受到了给客户单身狗坚实的火龙果速度快就更好了速度快该代理商开个会理科生道格拉斯的快感和塑料袋可感受到了给客户单身狗坚实的火龙果速度快就更好了速度快该代理商开个会理科生道格拉斯的快感和塑料袋可感受到了给客户</view>
+        </view>
+        <view class="film-review-btns">
+            <button bind:tap="onTapFilmReviewList"><i class="fa fa-eye"></i>查看影评</button>
+            <button bind:tap="onTapAddFilmReview"><i class="fa fa-comments-o"></i>添加影评</button>
+        </view>
+    </view>
+</view>

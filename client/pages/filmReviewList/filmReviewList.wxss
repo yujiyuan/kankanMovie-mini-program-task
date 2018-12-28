@@ -1,0 +1,17 @@
+.film-review-list-page {
+  padding-top: 50rpx; }
+  .film-review-list-page .film-review-list {
+    height: 1050rpx; }
+    .film-review-list-page .film-review-list .film-review-item {
+      background: #fff;
+      padding: 50rpx 150rpx 50rpx 100rpx; }
+      .film-review-list-page .film-review-list .film-review-item text {
+        color: #94A9BB; }
+      .film-review-list-page .film-review-list .film-review-item .film-review-text {
+        margin-top: 25rpx;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        white-space: nowrap;
+        font-size: 28rpx; }
+
+/*# sourceMappingURL=filmReviewList.wxss.map */

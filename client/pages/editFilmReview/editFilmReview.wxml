@@ -1,0 +1,18 @@
+<!--pages/editFilmReview/editFilmReview.wxml-->
+<view class="detail-page">
+    <view class="detail-main-box">
+        <image class="film-poster" src="/images/p2517753454.jpg"></image>
+        <view class="film-synopsis">
+            <view class="film-name">复仇者联盟3：无限战争</view>
+                      <view class="film-main">
+               <textarea class="film-review-text" placeholder="输入你的影评内容..."></textarea>
+               <button class="tape" bind:touchstart="start" bind:touchend="stop">
+                   <i class="fa fa-microphone"></i>
+                   录音
+               </button>
+           </view>
+        </view>
+     
+    </view>
+        <view class="complete" bind:tap="onTapToFilmReview">完成</view>
+</view>

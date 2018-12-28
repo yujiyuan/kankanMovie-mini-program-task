@@ -1,0 +1,19 @@
+{
+  "pages":[
+    "pages/index/index",
+    "pages/user/user",
+    "pages/detail/detail",
+    "pages/editFilmReview/editFilmReview",
+    "pages/filmReview/filmReview",
+    "pages/filmReviewDetail/filmReviewDetail",
+    "pages/filmReviewList/filmReviewList",
+    "pages/filmList/filmList"
+  ],
+  "window":{
+    "backgroundColor":"#F6F6F6",
+    "backgroundTextStyle":"light",
+    "navigationBarBackgroundColor": "#F6F6F6",
+    "navigationBarTitleText": "看看侃侃电影",
+    "navigationBarTextStyle":"black"
+  }
+}

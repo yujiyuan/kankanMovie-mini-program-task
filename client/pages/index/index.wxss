@@ -1,0 +1,16 @@
+.recommend-pages .movie-poster {
+  padding: 20rpx 80rpx; }
+  .recommend-pages .movie-poster .poster-img {
+    width: 100%;
+    height: 756rpx; }
+  .recommend-pages .movie-poster .poster-text {
+    color: #000;
+    font-size: 50rpx;
+    text-align: center;
+    margin: 20rpx; }
+  .recommend-pages .movie-poster .recommend-person {
+    text-align: center; }
+    .recommend-pages .movie-poster .recommend-person text {
+      font-size: 30rpx; }
+
+/*# sourceMappingURL=index.wxss.map */

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,YAAa;EACT,OAAO,EAAE,IAAI;EACZ,YAAY,EAAE,KAAK;EACpB,mBAAM;IACF,KAAK,EAAE,KAAK;IACZ,SAAS,EAAE,KAAK;EAEpB,uBAAW;IACP,WAAW,EAAE,KAAK;IAClB,YAAY,EAAE,KAAK;IACnB,MAAM,EAAE,iBAAiB",
+"sources": ["../../styles/filmReviewDetail.scss"],
+"names": [],
+"file": "filmReviewDetail.wxss"
+}

@@ -1,0 +1,7 @@
+{
+"version": 3,
+"mappings": "AAAA,sBAAsB;EAClB,WAAW,EAAE,KAAK;EAClB,wCAAiB;IACb,MAAM,EAAE,OAAO;IACf,0DAAkB;MACd,UAAU,EAAE,IAAI;MAChB,OAAO,EAAE,yBAAyB;MAClC,+DAAI;QACC,KAAK,EAAE,OAAO;MAEnB,4EAAiB;QACb,UAAU,EAAE,KAAK;QACjB,QAAQ,EAAE,MAAM;QAChB,aAAa,EAAC,QAAQ;QACtB,WAAW,EAAE,MAAM;QACnB,SAAS,EAAE,KAAK",
+"sources": ["../../styles/filmReviewList.scss"],
+"names": [],
+"file": "filmReviewList.wxss"
+}
