@@ -1,5 +1,8 @@
 // pages/editFilmReview/editFilmReview.js
-
+const app = getApp()
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config.js')
+const util = require('../../utils/util');
 const recorderManager = wx.getRecorderManager();
 const innerAudioContext = wx.createInnerAudioContext();
 Page({
@@ -7,18 +10,39 @@ Page({
    * 页面的初始数据
    */
   data: {
-    isReview: true
+    filmDetail: {},
+    userInfo: null,
+    tempFilePath:"",//留言的录音地址
   },
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
-
+  onLoad: function(options) {
+    const that = this;
+    util.getFilmDetail({ // 设置电影详情
+      id: options.id,
+      success: ({ filmDetail }) => {
+        console.log('sss', filmDetail)
+        that.setData({ filmDetail })
+      } })
+  },
   /**
    * 生命周期函数--监听页面初次渲染完成
    */
-  onReady: function() {},
+  onShow: function() {
+    app.checkSession({
+      // 获取用户信息
+      success: ({ userInfo }) => {
+        console.log("sss",userInfo)
+        this.setData({ userInfo })
+      }
+    })
+  },
+
+
+  
+  
   /**
    * 开始录音
    */
@@ -43,8 +67,9 @@ Page({
     })
     //错误回调
     recorderManager.onError(res => {
-      console.log(res)
-    })
+      console.log(res);
+    });
+    
   },
 
   /**
@@ -57,15 +82,49 @@ Page({
       console.log('停止录音', res.tempFilePath)
       wx.hideToast()
       const { tempFilePath } = res
+      this.setData({ tempFilePath })
     })
   },
 
   /**
-   * 前往影评预览页
+   * 上传影评，并前往影评预览页
    */
-  onTapToFilmReview(){
-    wx.navigateTo({
-      url: '/pages/filmReview/filmReview',
+  onTapToFilmReview(event) {
+  
+    //todo:这边不知道为什么会发起两次请求。login和uploadReview各两次
+    const {  userInfo, tempFilePath, filmDetail } = this.data
+    const { nickName } = userInfo;
+    console.log('content', event)
+    wx.showLoading({
+      title: '正在发表评论'
+    });
+    qcloud.request({
+      url: config.service.uploadReview,
+      login: true,
+      method: 'PUT',
+      data: {
+
+        ...filmDetail,
+        content: event.detail.value.textarea,
+        userName: nickName,
+        tempFilePath
+      },
+      success: result => {
+        wx.hideLoading();
+        wx.navigateTo({
+          url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
+        })
+      },
+      fail: () => {
+        wx.hideLoading()
+        wx.showToast({
+          icon: 'none',
+          title: '发表评论失败'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
     })
   }
 })

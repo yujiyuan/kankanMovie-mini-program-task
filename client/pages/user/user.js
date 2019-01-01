@@ -1,14 +1,45 @@
 // pages/user/user.js
+const app = getApp()
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: {
+    userInfo: null
+  },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {},
+  /**
+   * 生命周期函数--监听页面初次渲染完成
+   */
+  onShow: function() {
+    app.checkSession({
+      // 获取用户信息
+      success: ({ userInfo }) => {
+        console.log('sss', userInfo)
+        this.setData({ userInfo })
+      }
+    })
+  },
+  /**
+   * 登陆
+   */
+  onTapLogin(e) {
+    console.log(e.detail.errMsg)
+    console.log(e.detail.userInfo)
+    console.log(e.detail.rawData)
+    app.login({
+      success: ({ userInfo }) => {
+        console.log('sss', userInfo)
+        this.setData({
+          userInfo
+        })
+      }
+    })
+  },
   /**
    * 点击播放语音
    */

@@ -1,14 +1,29 @@
 // pages/filmReview/filmReview.js
+const app = getApp()
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config.js')
+const util = require('../../utils/util')
+const recorderManager = wx.getRecorderManager()
+const innerAudioContext = wx.createInnerAudioContext()
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: { filmDetail: {},},
 
   /**
    * 生命周期函数--监听页面加载
    */
-  onLoad: function(options) {},
+  onLoad: function(options) {
+    const that = this;
+    util.getFilmDetail({ // 设置电影详情
+      id: options.id,
+      success: ({ filmDetail }) => {
+        console.log('sss', filmDetail)
+        that.setData({ filmDetail })
+      }
+    })
+  },
 
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -19,9 +34,8 @@ Page({
    * 重新编辑
    */
   onTapAgainEdit() {
-    wx.navigateBack({
-      delta: 1 // 回退前 delta(默认为1) 页面
-    })
+    console.log("ss");
+    wx.navigateBack()
   },
   /**
    * 发布影评

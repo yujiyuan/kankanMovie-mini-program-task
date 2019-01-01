@@ -2395,8 +2395,9 @@ page {
         height: 485rpx;
         display: -webkit-box;
         -webkit-box-orient: vertical;
-        -webkit-line-clamp: 10;
-        overflow: hidden; }
+         /*-webkit-line-clamp: 10; */
+        overflow:auto;
+      }
     .detail-page .detail-main-box .film-review-btns {
       display: flex;
       padding: 0 80rpx 50rpx; }

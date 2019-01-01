@@ -34,4 +34,8 @@ router.post('/message', controllers.message.post)
 
 //获取电影列表
 router.get("/filmList",controllers.home.list);
+
+
+//上传影评
+router.put('/uploadReview', validationMiddleware, controllers.home.add)
 module.exports = router

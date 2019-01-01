@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 7,
+			"current": 5,
 			"list": [
 				{
 					"id": -1,
@@ -51,10 +51,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 3,
 					"name": "编辑影评",
 					"pathName": "pages/editFilmReview/editFilmReview",
-					"query": ""
+					"query": "id=7"
 				},
 				{
 					"id": -1,
@@ -63,10 +63,10 @@
 					"query": ""
 				},
 				{
-					"id": -1,
+					"id": 5,
 					"name": "影评预览",
 					"pathName": "pages/filmReview/filmReview",
-					"query": ""
+					"query": "id=7"
 				},
 				{
 					"id": -1,
@@ -77,7 +77,8 @@
 				{
 					"id": -1,
 					"name": "热门电影",
-					"pathName": "pages/filmList/filmList"
+					"pathName": "pages/filmList/filmList",
+					"query": ""
 				}
 			]
 		}
