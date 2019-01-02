@@ -3,7 +3,7 @@
  */
 
 // 此处主机域名修改成腾讯云解决方案分配的域名
-var host = 'https://8ycdipys.qcloud.la'
+var host = "https://8ycdipys.qcloud.la";
 
 var config = {
   // 下面的地址配合云端 Demo 工作
@@ -29,8 +29,11 @@ var config = {
     getFilmList: `${host}/weapp/filmList`,
 
     // 上传影评
-    uploadReview: `${host}/weapp/uploadReview`
+    uploadReview: `${host}/weapp/uploadReview`,
+
+    // 获取电影列表
+    getReviewList: `${host}/weapp/getReviewList`
   }
-}
+};
 
 module.exports = config;

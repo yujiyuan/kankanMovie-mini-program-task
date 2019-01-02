@@ -1,15 +1,15 @@
 CREATE TABLE `movies` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
-  `title` varchar(255) NOT NULL,
-  `image` varchar(255) NOT NULL,
-  `category` varchar(255) NOT NULL,
+  `title` varchar(255)  NULL,
+  `image` varchar(255)  NULL,
+  `category` varchar(255)  NULL,
   `description` TEXT CHARACTER SET utf8 DEFAULT NULL,
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `userName` varchar(255) NOT NULL,
-  `content` varchar(255) NOT NULL,
-  `user` varchar(255) NOT NULL,
-  `tempFilePath` varchar(255) NOT NULL,
-  `avatar` varchar(255) NOT NULL,
+  `userName` varchar(255)  NULL,
+  `content` varchar(255)  NULL,
+  `user` varchar(255)  NULL,
+  `tempFilePath` varchar(255)  NULL,
+  `avatar` varchar(255)  NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 

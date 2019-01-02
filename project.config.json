@@ -12,7 +12,7 @@
 		"autoAudits": false
 	},
 	"appid": "wx96858677bd48de2d",
-	"projectname": "2",
+	"projectname": "movie",
 	"condition": {
 		"search": {
 			"current": -1,
@@ -66,13 +66,13 @@
 					"id": 5,
 					"name": "影评预览",
 					"pathName": "pages/filmReview/filmReview",
-					"query": "id=7"
+					"query": "id=7&isLatestReview=true"
 				},
 				{
-					"id": -1,
+					"id": 6,
 					"name": "影评列表",
 					"pathName": "pages/filmReviewList/filmReviewList",
-					"query": ""
+					"query": "id=7"
 				},
 				{
 					"id": -1,
