@@ -92,37 +92,54 @@ Page({
     const { userInfo, tempFilePath, filmDetail } = this.data;
     const { nickName } = userInfo;
     console.log("content", event);
-    wx.showLoading({
-      title: "正在发表评论"
-    });
-    qcloud.request({
-      url: config.service.uploadReview,
-      login: true,
-      method: "PUT",
-      data: {
-        id: filmDetail.id,
-        avatar: filmDetail.avatar,
-        user: filmDetail.user,
-        content: event.detail.value.textarea,
-        userName: nickName,
-        tempFilePath
-      },
-      success: result => {
-        wx.hideLoading();
-        wx.navigateTo({
-          url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
-        });
-      },
-      fail: () => {
-        wx.hideLoading();
-        wx.showToast({
-          icon: "none",
-          title: "发表评论失败"
-        });
-      },
-      complete: () => {
-        wx.hideLoading();
-      }
-    });
+    // wx.showLoading({
+    //   title: "正在发表评论"
+    // });
+    // qcloud.request({
+    //   url: config.service.uploadReview,
+    //   login: true,
+    //   method: "PUT",
+    //   data: {
+    //     id: filmDetail.id,
+    //     avatar: filmDetail.avatar,
+    //     user: filmDetail.user,
+    //     content: event.detail.value.textarea,
+    //     userName: nickName,
+    //     tempFilePath
+    //   },
+    //   success: result => {
+    //     wx.hideLoading();
+    //     wx.navigateTo({
+    //       url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
+    //     });
+    //   },
+    //   fail: () => {
+    //     wx.hideLoading();
+    //     wx.showToast({
+    //       icon: "none",
+    //       title: "发表评论失败"
+    //     });
+    //   },
+    //   complete: () => {
+    //     wx.hideLoading();
+    //   }
+    // });
+    try {
+          wx.setStorage({
+            key: 'reviewDetail',
+            data: {
+              id: filmDetail.id,
+              content: event.detail.value.textarea,
+              userName: nickName,
+              tempFilePath
+            }
+          })
+              wx.navigateTo({
+                url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
+              });
+        } catch (error) {
+      console.log(error)
+    }
+
   }
 });

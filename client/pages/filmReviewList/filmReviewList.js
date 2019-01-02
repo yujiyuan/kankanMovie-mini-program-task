@@ -1,13 +1,14 @@
 // pages/filmReviewList/filmReviewList.js
-const util = require("../../utils/util");
-const qcloud = require("../../vendor/wafer2-client-sdk/index");
-const recorderManager = wx.getRecorderManager();
-const innerAudioContext = wx.createInnerAudioContext();
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config.js')
+const util = require('../../utils/util')
+const recorderManager = wx.getRecorderManager()
+const innerAudioContext = wx.createInnerAudioContext()
 Page({
   /**
    * 页面的初始数据
    */
-  data: {},
+  data: { reviewList:[]},
 
   /**
    * 生命周期函数--监听页面加载
@@ -19,29 +20,36 @@ Page({
       id: options.id,
       success: ({ filmDetail }) => {
         console.log("sss", filmDetail);
-        that.setData({ filmDetail });
+        that.setData({ id: options.id,filmDetail })
       }
     });
-    this.getReviewList();
+    this.getReviewList(options.id)
   },
   /**
    * 下拉刷新
    */
-  onPullDownRefresh: function() {
+  onPullDownRefresh() {
+    
+    const {id} = this.data;
     // 页面相关事件处理函数--监听用户下拉动作
-    this.getReviewList(() => {
+    this.getReviewList(id,() => {
       wx.stopPullDownRefresh();
     });
   },
   /**
    * 获取影评列表
    */
-  getReviewList(callback) {
+  getReviewList(id,callback) {
     qcloud.request({
       url: config.service.getReviewList,
+      login: true,
+      method: 'GET',
+      data: {
+        id
+      },
       success: response => {
         const { data } = response.data;
-        console.log(data);
+        console.log(data)
         // let list = data.map(item => {
         //   let create_time = utils.setDate(item.create_time);
         //   return {
@@ -50,13 +58,13 @@ Page({
         //   };
         // });
         // console.log(list);
-        // this.setData({ list });
-        callback && callback();
+        this.setData({ reviewList:data })
+        callback && callback()
       },
       fail: err => {
-        console.log(err);
+        console.log(err)
       }
-    });
+    })
   },
   /**
    * 回到首页
@@ -70,9 +78,11 @@ Page({
   /**
    * 前往影评详情页
    */
-  onTapToFilmReviewDetail() {
+  onTapToFilmReviewDetail(event) {
+    console.log(event);
+    const { id, user, reviewid } = event.currentTarget.dataset
     wx.navigateTo({
-      url: "/pages/filmReviewDetail/filmReviewDetail"
-    });
+      url: `/pages/filmReviewDetail/filmReviewDetail?id=${id}&review_id=${reviewid}&user=${user}`
+    })
   }
 });

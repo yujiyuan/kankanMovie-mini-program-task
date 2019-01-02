@@ -1,14 +1,16 @@
 <!--pages/filmReviewList/filmReviewList.wxml-->
 <view class="film-review-list-page">
-    <scroll-view scroll-y class="film-review-list" >
-        <view class="film-review-item" bind:tap="onTapToFilmReviewDetail">
-            <view>
-                <image class="avatar" src="/images/p2517753454.jpg"></image>
-                <text>余慧珍的影评</text>
+    <view class="film-review-list" >
+        <block wx:for="{{reviewList}}">
+            <view class="film-review-item" data-reviewid="{{item.review_id}}" data-id="{{item.id}}" data-user="{{item.user}}" bind:tap="onTapToFilmReviewDetail">
+                <view>
+                    <image class="avatar" src="{{item.avatar}}"></image>
+                    <text>{{item.userName}}的影评</text>
+                </view>
+                <view class="film-review-text">{{item.content}}</view>
             </view>
-            <view class="film-review-text">时代公司的客观上大概就是大概就是的根深蒂固的过分岁的根深蒂固第三个第三个岁的根深蒂固</view>
-         </view>
-    </scroll-view>
+        </block>
+    </view>
     <view class="bottom-navigation" bind:tap="goBackIndex">
         <view >回到首页</view>
     </view>

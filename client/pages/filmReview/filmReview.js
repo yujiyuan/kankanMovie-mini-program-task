@@ -9,44 +9,42 @@ Page({
   /**
    * 页面的初始数据
    */
-  data: { id: "", filmDetail: {} },
+  data: { userInfo:null,reviewDetail: {}, filmDetail: {} },
 
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    const that = this;
-
+    const that = this
+    app.checkSession({
+      // 获取用户信息
+      success: ({ userInfo }) => {
+        console.log('sss', userInfo)
+        this.setData({ userInfo })
+      }
+    })
     util.getFilmDetail({
       // 设置电影详情
       id: options.id,
       success: ({ filmDetail }) => {
-        console.log("sss", filmDetail);
-        that.setData({ filmDetail });
+        console.log('sss', filmDetail)
+        that.setData({ filmDetail })
       }
-    });
-    this.getReviewList(options.id);
+    })
+    this.getReviewDetail()
   },
   /**
-   * 获取影评列表
+   * 预览影评
    */
-  getReviewList(id) {
-    qcloud.request({
-      url: config.service.getReviewList,
-      login: true,
-      method: "GET",
-      data: {
-        id,
-        isLatestReview: false
-      },
-      success: response => {
-        const { data } = response.data;
-        console.log(response);
-      },
-      fail: err => {
-        console.log(err);
+  getReviewDetail() {
+
+    wx.getStorage({
+      key: 'reviewDetail',
+      success: res => {
+        console.log(res.data)
+        this.setData({ reviewDetail: res.data })
       }
-    });
+    })
   },
   /**
    * 生命周期函数--监听页面初次渲染完成
@@ -57,15 +55,47 @@ Page({
    * 重新编辑
    */
   onTapAgainEdit() {
-    console.log("ss");
-    wx.navigateBack();
+    wx.navigateBack()
   },
   /**
    * 发布影评
    */
   onTapRelease() {
-    wx.navigateTo({
-      url: `/pages/filmReviewList/filmReviewList?id=${this.data.filmDetail.id}`
-    });
+    // wx.navigateTo({
+    //   url: `/pages/filmReviewList/filmReviewList?id=${this.data.filmDetail.id}`
+    // });
+    const { userInfo, reviewDetail, filmDetail } = this.data
+    const { nickName, id, content, tempFilePath } = reviewDetail;
+    console.log('ss', reviewDetail)
+
+    wx.showLoading({ title: '正在发表评论' })
+    qcloud.request({
+      url: config.service.uploadReview,
+      login: true,
+      method: 'POST',
+      data: {
+        id: id,
+        content: content,
+        userName: nickName,
+        tempFilePath
+      },
+      success: result => {
+        wx.hideLoading()
+        wx.navigateTo({
+          url: `/pages/filmReviewList/filmReviewList?id=${filmDetail.id}`
+        })
+      },
+      fail: () => {
+        wx.hideLoading()
+        wx.showToast({
+          icon: 'none',
+          title: '发表评论失败'
+        })
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
   }
-});
+})
+ 

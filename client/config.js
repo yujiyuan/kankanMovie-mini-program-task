@@ -32,7 +32,10 @@ var config = {
     uploadReview: `${host}/weapp/uploadReview`,
 
     // 获取电影列表
-    getReviewList: `${host}/weapp/getReviewList`
+    getReviewList: `${host}/weapp/getReviewList`,
+
+    //获取单个影评详情 
+    getReviewDetail: `${host}/weapp/getReviewDetail`
   }
 };
 

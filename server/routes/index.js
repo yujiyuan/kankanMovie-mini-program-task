@@ -42,5 +42,8 @@ router.post("/uploadReview", validationMiddleware, controllers.home.add);
 
 //获取影评列表
 router.get("/getReviewList", validationMiddleware, controllers.home.reviewList);
+//获取单个影评详情
+router.get("/getReviewDetail", validationMiddleware, controllers.home.reviewDetail);
 
 module.exports = router;
+ 

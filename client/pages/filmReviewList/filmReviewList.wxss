@@ -1,10 +1,12 @@
-.film-review-list-page {
-  padding-top: 50rpx; }
+/* .film-review-list-page {
+  padding-top: 50rpx; } */
   .film-review-list-page .film-review-list {
-    height: 1050rpx; }
+    /* height: 1100rpx; */
+    padding-bottom: 50px; }
     .film-review-list-page .film-review-list .film-review-item {
       background: #fff;
-      padding: 50rpx 150rpx 50rpx 100rpx; }
+      padding: 50rpx 150rpx 50rpx 100rpx;
+    border-bottom: 1rpx solid #94A9BB; }
       .film-review-list-page .film-review-list .film-review-item text {
         color: #94A9BB; }
       .film-review-list-page .film-review-list .film-review-item .film-review-text {
@@ -13,5 +15,7 @@
         text-overflow: ellipsis;
         white-space: nowrap;
         font-size: 28rpx; }
-
+.bottom-navigation  {
+  position: fixed;
+}
 /*# sourceMappingURL=filmReviewList.wxss.map */

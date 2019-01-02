@@ -5,14 +5,19 @@
         <view class="film-synopsis">
             <view class="film-name">{{filmDetail.title}}</view>
             <view>
-                <image class="avatar" src="{{filmDetail.avatar}}"></image>
-                <text>{{filmDetail.usernName}}的影评</text>
+                <image class="avatar" src="{{userInfo.avatarUrl}}"></image>
+                <text>{{userInfo.nickName}}的影评</text>
             </view>
             <view class="commit-text">
                 <view class="quote">"</view>
                 <view class="film-main">
-                    {{filmDetail.content}}
+                    {{reviewDetail.content}}
                 </view>
+                <!-- todo:样式调整。及播放功能 -->
+                <button class="tape" bind:touchstart="start" bind:touchend="stop">
+                    <i class="fa fa-microphone"></i>
+                    录音
+                </button>
             </view>
         </view>
         <view class="film-review-btns">
