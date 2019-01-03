@@ -1,6 +1,7 @@
 CREATE TABLE `collectionReviews` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `movie_id` int(11)  NULL,
+  `duration` int(11)  NULL,
   `title` varchar(255)  NULL,
   `image` varchar(255)  NULL,
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
