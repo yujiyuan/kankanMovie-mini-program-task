@@ -34,8 +34,11 @@ var config = {
     // 获取电影列表
     getReviewList: `${host}/weapp/getReviewList`,
 
-    //获取单个影评详情 
-    getReviewDetail: `${host}/weapp/getReviewDetail`
+    //获取单个影评详情
+    getReviewDetail: `${host}/weapp/getReviewDetail`,
+
+    //收藏影评
+    addCollectionReviews: `${host}/weapp/addCollectionReviews`
   }
 };
 

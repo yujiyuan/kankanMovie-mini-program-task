@@ -6,11 +6,26 @@
             <view class="film-synopsis">
                 <view class="film-name">{{filmDetail.title}}</view>
                 <view class="film-main">
+                    <block wx:if="{{!!tapIndex}}">
+                        <block wx:if="{{tempFilePath}}">
+                            <button class="tape" bind:tap="onPlay" >
+                                <i class="fa fa-play-circle"></i>
+                                    {{duration}}S
+                            </button>
+                        </block>
+                        
+                        <block wx:else>
+                                
+                                <button class="tape" bind:touchstart="start" bind:touchend="stop" bind:longtap="longTap">
+                                <i class="fa fa-microphone"></i>
+                                录音
+                            </button>
+                            </block>
+                    </block>
+                    <block wx:else>
+                    
                     <textarea   name="textarea" class="film-review-text" placeholder="输入你的影评内容..."></textarea>
-                    <button class="tape" bind:touchstart="start" bind:touchend="stop">
-                        <i class="fa fa-microphone"></i>
-                        录音
-                    </button>
+                    </block>
                 </view>
             </view>
         </view>

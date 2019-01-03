@@ -11,7 +11,16 @@
             <view class="commit-text">
                 <view class="quote">"</view>
                 <view class="film-main">
-                    {{reviewDetail.content}}
+                   
+                    <block wx:if="{{!!reviewDetail.tempFilePath}}">
+                            <button class="tape" bind:tap="onPlay" >
+                                <i class="fa fa-play-circle"></i>
+                                    {{reviewDetail.duration}}S
+                            </button>
+                    </block>
+                    <block wx:else>
+                        {{reviewDetail.content}}
+                    </block>
                 </view>
             </view>
         </view>
@@ -20,7 +29,7 @@
                 <i class="fa fa-star"></i>
                 收藏影评
             </button>
-            <button bind:tap="onTapWrite">
+            <button bind:tap="onTapWrite" data-id="{{reviewDetail.id}}">
                 <i class="fa fa-pencil"></i>
                 写影评
             </button>

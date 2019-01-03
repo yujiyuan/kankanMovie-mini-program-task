@@ -2418,5 +2418,12 @@ page {
   border: 1rpx solid #CBD5DD; }
   .film-review-audio .fa {
     margin-right: 5rpx; }
-
+.tape {
+  width:170rpx;
+color:#94A9BB;
+background:#fff;
+font-size:24rpx;
+margin-top:30rpx;
+text-align: left;
+}
 /*# sourceMappingURL=app.wxss.map */

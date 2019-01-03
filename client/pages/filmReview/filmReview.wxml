@@ -11,14 +11,20 @@
             <view class="commit-text">
                 <view class="quote">"</view>
                 <view class="film-main">
-                    {{reviewDetail.content}}
-                </view>
                 <!-- todo:样式调整。及播放功能 -->
-                <button class="tape" bind:touchstart="start" bind:touchend="stop">
-                    <i class="fa fa-microphone"></i>
-                    录音
-                </button>
+                
+                    <block wx:if="{{!!reviewDetail.tempFilePath}}">
+                            <button class="tape" bind:tap="onPlay" >
+                                <i class="fa fa-play-circle"></i>
+                                    {{reviewDetail.duration}}S
+                            </button>
+                    </block>
+                    <block wx:else>
+                        {{reviewDetail.content}}
+                    </block>
+                </view>
             </view>
+            
         </view>
         <view class="film-review-btns">
             <button bind:tap="onTapAgainEdit">

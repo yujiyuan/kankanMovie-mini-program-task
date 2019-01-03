@@ -12,7 +12,9 @@ Page({
   data: {
     filmDetail: {},
     userInfo: null,
-    tempFilePath: "" //留言的录音地址
+    tapIndex: 0,
+    tempFilePath: "",
+    duration: 0
   },
 
   /**
@@ -27,6 +29,9 @@ Page({
         console.log("sss", filmDetail);
         that.setData({ filmDetail });
       }
+    });
+    this.setData({
+      tapIndex: Number(options.tapIndex)
     });
   },
   /**
@@ -77,69 +82,55 @@ Page({
     recorderManager.stop();
     recorderManager.onStop(res => {
       this.tempFilePath = res.tempFilePath;
-      console.log("停止录音", res.tempFilePath);
+      console.log("停止录音", res);
       wx.hideToast();
-      const { tempFilePath } = res;
-      this.setData({ tempFilePath });
+      const { tempFilePath, duration } = res;
+      innerAudioContext.src = tempFilePath;
+
+      this.setData({ tempFilePath, duration: Math.round(duration / 1000) });
     });
   },
 
+  longTap() {
+    console.log("longTap....");
+  },
+  /**
+   * 播放录音
+   */
+  onPlay() {
+    innerAudioContext.src = this.data.tempFilePath;
+    innerAudioContext.play(() => {
+      console.log("开始播放");
+    });
+    innerAudioContext.onError(res => {
+      console.log(res.errMsg);
+      console.log(res.errCode);
+    });
+  },
   /**
    * 上传影评，并前往影评预览页
    */
   onTapToFilmReview(event) {
     //todo:这边不知道为什么会发起两次请求。login和uploadReview各两次
-    const { userInfo, tempFilePath, filmDetail } = this.data;
+    const { userInfo, tempFilePath, filmDetail, duration } = this.data;
     const { nickName } = userInfo;
     console.log("content", event);
-    // wx.showLoading({
-    //   title: "正在发表评论"
-    // });
-    // qcloud.request({
-    //   url: config.service.uploadReview,
-    //   login: true,
-    //   method: "PUT",
-    //   data: {
-    //     id: filmDetail.id,
-    //     avatar: filmDetail.avatar,
-    //     user: filmDetail.user,
-    //     content: event.detail.value.textarea,
-    //     userName: nickName,
-    //     tempFilePath
-    //   },
-    //   success: result => {
-    //     wx.hideLoading();
-    //     wx.navigateTo({
-    //       url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
-    //     });
-    //   },
-    //   fail: () => {
-    //     wx.hideLoading();
-    //     wx.showToast({
-    //       icon: "none",
-    //       title: "发表评论失败"
-    //     });
-    //   },
-    //   complete: () => {
-    //     wx.hideLoading();
-    //   }
-    // });
     try {
-          wx.setStorage({
-            key: 'reviewDetail',
-            data: {
-              id: filmDetail.id,
-              content: event.detail.value.textarea,
-              userName: nickName,
-              tempFilePath
-            }
-          })
-              wx.navigateTo({
-                url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
-              });
-        } catch (error) {
-      console.log(error)
+      wx.setStorage({
+        key: "reviewDetail",
+        data: {
+          id: filmDetail.id,
+          content: event.detail.value.textarea,
+          userName: nickName,
+          tempFilePath,
+          duration
+        }
+      });
+      wx.navigateTo({
+        url: `/pages/filmReview/filmReview?id=${filmDetail.id}`
+      });
+    } catch (error) {
+      console.log(error);
     }
-
   }
 });
