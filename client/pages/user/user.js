@@ -1,11 +1,17 @@
 // pages/user/user.js
-const app = getApp()
+const app = getApp();
+const qcloud = require('../../vendor/wafer2-client-sdk/index')
+const config = require('../../config.js')
+const util = require('../../utils/util')
+const recorderManager = wx.getRecorderManager()
+const innerAudioContext = wx.createInnerAudioContext()
 Page({
   /**
    * 页面的初始数据
    */
   data: {
-    userInfo: null
+    userInfo: null,
+    collectionReviewsList: []
   },
 
   /**
@@ -16,24 +22,24 @@ Page({
    * 生命周期函数--监听页面初次渲染完成
    */
   onShow: function() {
+    wx.showLoading({ title: '正在登录中' })
     app.checkSession({
       // 获取用户信息
       success: ({ userInfo }) => {
-        console.log('sss', userInfo)
+        wx.hideLoading()
         this.setData({ userInfo })
       }
     })
+    this.getCollectionReviewsList()
   },
   /**
    * 登陆
    */
   onTapLogin(e) {
-    console.log(e.detail.errMsg)
-    console.log(e.detail.userInfo)
-    console.log(e.detail.rawData)
+    wx.showLoading({ title: '正在登录中' })
     app.login({
       success: ({ userInfo }) => {
-        console.log('sss', userInfo)
+        wx.hideLoading()
         this.setData({
           userInfo
         })
@@ -41,18 +47,50 @@ Page({
     })
   },
   /**
+   * 获取影评列表
+   */
+  getCollectionReviewsList( callback) {
+    wx.showLoading({ title: '正在获取收藏列表' })
+    qcloud.request({
+      url: config.service.getCollectionReviews,
+      login: true,
+      method: 'GET',
+      success: response => {
+        const { data } = response.data
+        console.log(data)
+        this.setData({ collectionReviewsList: data })
+        callback && callback()
+      },
+      fail: err => {
+        console.log(err)
+      },
+      complete: () => {
+        wx.hideLoading();
+      }
+    })
+  },
+  /**
    * 点击播放语音
    */
-  play() {
-    let audioContext = wx.createInnerAudioContext()
-    audioContext.src =
-      'http://ws.stream.qqmusic.qq.com/M500001VfvsJ21xFqb.mp3?guid=ffffffff82def4af4b12b3cd9337d5e7&uin=346897220&vkey=6292F51E1E384E06DCBDC9AB7C49FD713D632D313AC4858BACB8DDD29067D3C601481D36E62053BF8DFEAF74C0A5CCFADD6471160CAF3E6A&fromtag=46'
-    audioContext.play()
+  onPlay(event) {
+    const { src } = event.currentTarget.dataset
+    // let audioContext = wx.createInnerAudioContext()
+    // audioContext.src = src
+    // audioContext.play()
 
-    audioContext.onPlay(() => {
-      audioContext.onTimeUpdate(res => {
-        console.log('audioContext.duration', audioContext.duration.toFixed(0))
-      })
+    // audioContext.onPlay(() => {
+    //   audioContext.onTimeUpdate(res => {
+    //     console.log('audioContext.duration', res)
+    //   })
+    // })
+    console.log('event', event, src);
+    innerAudioContext.src = src
+    innerAudioContext.play(() => {
+      console.log('开始播放')
+    })
+    innerAudioContext.onError(res => {
+      console.log(res.errMsg)
+      console.log(res.errCode)
     })
   },
   /**

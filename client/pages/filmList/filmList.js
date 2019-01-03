@@ -15,14 +15,14 @@ Page({
   onPullDownRefresh: function() {
     // 页面相关事件处理函数--监听用户下拉动作
     this.getFilmList(() => {
-      wx.stopPullDownRefresh();
-    });
+      wx.stopPullDownRefresh()
+    })
   },
   /**
    * 生命周期函数--监听页面加载
    */
   onLoad: function(options) {
-    this.getFilmList();
+    this.getFilmList()
   },
   /**
    * 获取电影列表
@@ -31,30 +31,29 @@ Page({
     qcloud.request({
       url: config.service.getFilmList,
       success: response => {
-        const { data } = response.data;
-        console.log(data);
+        const { data } = response.data
+        console.log(data)
         let list = data.map(item => {
-          let create_time = utils.setDate(item.create_time);
+          let create_time = utils.setDate(item.create_time)
           return {
             ...item,
             create_time
-          };
-        });
-        console.log(list);
-        this.setData({ list });
-        callback && callback();
+          }
+        })
+        console.log(list)
+        this.setData({ list })
+        callback && callback()
       },
       fail: err => {
-        console.log(err);
+        console.log(err)
       }
-    });
+    })
   },
   /**
    * 点击前往详情页
    */
-  onTapToFilmDetail() {
-    wx.navigateTo({
-      url: "/pages/detail/detail"
-    });
+  onTapToFilmDetail(event) {
+    const { id } = event.currentTarget.dataset
+    wx.navigateTo({ url: `/pages/detail/detail?id=${id}` })
   }
-});
+})

@@ -49,10 +49,16 @@ router.get(
   controllers.home.reviewDetail
 );
 //收藏影评
-router.get(
+router.post(
   "/addCollectionReviews",
   validationMiddleware,
   controllers.home.collectionReviews
 );
+//获取影评
+router.get(
+  '/getCollectionReviews',
+  validationMiddleware,
+  controllers.home.collectionList
+)
 
 module.exports = router;

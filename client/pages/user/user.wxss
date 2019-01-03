@@ -30,13 +30,14 @@
         .user-page .film-review-list .film-review-item .film-review-info .film-name {
           font-size: 32rpx; }
         .user-page .film-review-list .film-review-item .film-review-info .film-review-audio {
-          width: 235rpx;
+          width: 100%;
           font-size: 30rpx;
-          padding: 10rpx 50rpx;
+          padding: 10rpx 50rpx 10rpx 0;
           margin: 25rpx 0;
-          background: #DBE2E8;
+          background: #fff;
           border-radius: 5rpx;
-          border: 1rpx solid #CBD5DD; }
+          border: none;
+         }
           .user-page .film-review-list .film-review-item .film-review-info .film-review-audio .fa {
             margin-right: 5rpx; }
 
@@ -47,5 +48,7 @@
   font-size: 32rpx;
   padding: 30rpx;
   text-align: center; }
-
+.tape{
+  margin:0;
+}
 /*# sourceMappingURL=user.wxss.map */

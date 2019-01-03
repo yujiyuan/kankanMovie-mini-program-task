@@ -38,8 +38,10 @@ var config = {
     getReviewDetail: `${host}/weapp/getReviewDetail`,
 
     //收藏影评
-    addCollectionReviews: `${host}/weapp/addCollectionReviews`
+    addCollectionReviews: `${host}/weapp/addCollectionReviews`,
+    //获取影评
+    getCollectionReviews: `${host}/weapp/getCollectionReviews`
   }
-};
+}
 
 module.exports = config;

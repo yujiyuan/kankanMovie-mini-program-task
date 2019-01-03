@@ -12,7 +12,7 @@
                 <view class="quote">"</view>
                 <view class="film-main">
                    
-                    <block wx:if="{{!!reviewDetail.tempFilePath}}">
+                    <block wx:if="{{reviewDetail.tempFilePath !== 'null'}}">
                             <button class="tape" bind:tap="onPlay" >
                                 <i class="fa fa-play-circle"></i>
                                     {{reviewDetail.duration}}S

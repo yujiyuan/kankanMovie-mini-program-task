@@ -5,21 +5,29 @@
             <text>收藏的影评</text>
             <text class="fa fa-angle-down"></text>
         </view>
-        <scroll-view class="film-review-list">
-            <view class="film-review-item">
-                <image class="film-review-img" src="/images/p2517753454.jpg"></image>
+        <scroll-view class="film-review-list" scroll-y="{{true}}">
+            <block wx:for="{{collectionReviewsList}}" wx:key="{{index}}">
+                <view class="film-review-item">
+                <image class="film-review-img" src="{{item.image}}"></image>
                 <view class="film-review-info">
-                    <view class="film-name">复仇者联盟3：无限战争</view>
-                    <view class="film-review-audio" bind:tap="play">
-                        <text class="fa fa-play-circle"></text>
-                        <text>15s</text>
+                    <view class="film-name">{{item.title}}</view>
+                    <view class="film-review-audio">
+                        
+                        <block wx:if="{{item.tempFilePath !=='null'}}">
+                            <button class="tape" bind:tap="onPlay"  data-src="{{item.tempFilePath}}"> 
+                                <text class="fa fa-play-circle"></text>
+                                <text>{{item.duration}}S</text>
+                            </button>
+                        </block>
+                        <block wx:else>{{item.content}}</block>
                     </view>
                     <view class="user">
-                        <image class="avatar" src="/images/p2517753454.jpg"></image>
-                        <text>余慧珍</text>
+                        <image class="avatar" src="{{item.avatar}}"></image>
+                        <text>{{item.userName}}</text>
                     </view>
                 </view>
             </view>
+            </block>
         </scroll-view>
     </view>
     

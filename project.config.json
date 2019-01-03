@@ -30,7 +30,7 @@
 			"list": []
 		},
 		"miniprogram": {
-			"current": 6,
+			"current": 4,
 			"list": [
 				{
 					"id": -1,
@@ -57,10 +57,10 @@
 					"query": "id=7"
 				},
 				{
-					"id": -1,
+					"id": 4,
 					"name": "影评详情",
 					"pathName": "pages/filmReviewDetail/filmReviewDetail",
-					"query": ""
+					"query": "id=12&review_id=4&user=oa8nD5FhbcFdfYFE69mhyA-_09rY"
 				},
 				{
 					"id": 5,
