@@ -4,8 +4,8 @@
         <image class="poster-img" src="{{randomViewFilm.image}}" data-id="{{randomViewFilm.id}}" bind:tap="onTapToDetail"></image>
         <view class="poster-text">{{randomViewFilm.title}}</view>
         <view class="recommend-person">
-            <image class="avatar" src="/images/avatar.jpg" bind:tap="onTapToFilmReviewDetail"></image>
-            <text>修给你推荐了一部电影</text>
+            <image class="avatar" src="{{userInfo.avatarUrl}}" bind:tap="onTapToFilmReviewDetail"  data-id="{{randomViewFilm.id}}"></image>
+            <text>{{userInfo.nickName}}给你推荐了一部电影</text>
         </view>
     </view>
     <view class="bottom-navigation">
