@@ -36,6 +36,8 @@ router.post("/message", controllers.message.post);
 
 //获取电影列表
 router.get("/filmList", controllers.home.list);
+//获取电影详情
+router.get('/getFilmDetail', validationMiddleware, controllers.home.detail);
 
 //上传影评
 router.post("/uploadReview", validationMiddleware, controllers.home.add);
@@ -60,5 +62,7 @@ router.get(
   validationMiddleware,
   controllers.home.collectionList
 )
+//判断用户是否披露过该电影
+router.get('/isCollection', validationMiddleware, controllers.home.isCollection)
 
 module.exports = router;

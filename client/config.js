@@ -33,6 +33,8 @@ var config = {
 
     // 获取电影列表
     getReviewList: `${host}/weapp/getReviewList`,
+    //获取电影详情
+    getFilmDetail: `${host}/weapp/getFilmDetail`,
 
     //获取单个影评详情
     getReviewDetail: `${host}/weapp/getReviewDetail`,
@@ -40,7 +42,9 @@ var config = {
     //收藏影评
     addCollectionReviews: `${host}/weapp/addCollectionReviews`,
     //获取影评
-    getCollectionReviews: `${host}/weapp/getCollectionReviews`
+    getCollectionReviews: `${host}/weapp/getCollectionReviews`,
+    //用户是否评论过该电影
+    isCollection: `${host}/weapp/isCollection`
   }
 }
 

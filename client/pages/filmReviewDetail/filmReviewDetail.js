@@ -76,21 +76,51 @@ Page({
    */
   onTapWrite(event) {
     const { id } = event.currentTarget.dataset;
-
-    wx.showActionSheet({
-      itemList: ["文字", "音频"],
-      success(res) {
-        console.log(res.tapIndex);
-        wx.navigateTo({
-          url: `/pages/editFilmReview/editFilmReview?id=${id}&tapIndex=${
-            res.tapIndex
-          }`
-        });
+    wx.showLoading({ title: "数据加载中" });
+    qcloud.request({
+      url: config.service.isCollection,
+      login: true,
+      data: {
+        id
       },
-      fail(res) {
-        console.log(res.errMsg);
+      success: result => {
+        wx.hideLoading()
+        const { data } = result
+
+        if (!data.code) {
+          if (data.data.length === 0) {
+            wx.showActionSheet({
+              itemList: ["文字", "音频"],
+              success(res) {
+                wx.navigateTo({
+                  url: `/pages/editFilmReview/editFilmReview?id=${id}&tapIndex=${
+                    res.tapIndex
+                    }`
+                });
+              },
+              fail(res) {
+                console.log(res.errMsg);
+              }
+            });
+          } else {
+            wx.navigateTo({
+              url: `/pages/filmReviewDetail/filmReviewDetail?id=${id}&review_id=${
+                data.data[0].review_id
+                }&isIndexGetInto=false`
+            })
+          }
+        } else {
+          wx.showToast({ title: '数据加载失败', icon: 'none' })
+        }
+      },
+      fail: () => {
+        wx.hideLoading()
+        wx.showToast({ title: '数据加载失败', icon: 'none' })
+      },
+      complete: () => {
+        wx.hideLoading()
       }
-    });
+    })
   },
   /**
    * 收藏影评

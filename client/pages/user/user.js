@@ -11,6 +11,7 @@ Page({
    */
   data: {
     userInfo: null,
+    isCollection: true, //是否展示收藏列表
     collectionReviewsList: []
   },
 
@@ -33,6 +34,18 @@ Page({
     this.getCollectionReviewsList()
   },
   /**
+   * 点击切换展示发布和收藏的影评列表
+   */
+  onTapChange(event){
+    const { isCollection } = this.data;
+    if (isCollection){
+      this.getCollectionReviewsList()
+    }else {
+      this.getReviewList()
+    }
+    this.setData({ isCollection: !isCollection })
+  },
+  /**
    * 登陆
    */
   onTapLogin(e) {
@@ -47,9 +60,32 @@ Page({
     })
   },
   /**
-   * 获取影评列表
+   * 获取发布的影评列表
    */
-  getCollectionReviewsList( callback) {
+  getReviewList(callback) {
+    wx.showLoading({ title: '正在获取收藏列表' })
+    qcloud.request({
+      url: config.service.getReviewList,
+      login: true,
+      method: 'GET',
+      success: response => {
+        const { data } = response.data
+        console.log(data)
+        this.setData({ collectionReviewsList: data })
+        callback && callback()
+      },
+      fail: err => {
+        console.log(err)
+      },
+      complete: () => {
+        wx.hideLoading()
+      }
+    })
+  },
+  /**
+   * 获取收藏的影评列表
+   */
+  getCollectionReviewsList(callback) {
     wx.showLoading({ title: '正在获取收藏列表' })
     qcloud.request({
       url: config.service.getCollectionReviews,
@@ -65,7 +101,7 @@ Page({
         console.log(err)
       },
       complete: () => {
-        wx.hideLoading();
+        wx.hideLoading()
       }
     })
   },
@@ -74,16 +110,7 @@ Page({
    */
   onPlay(event) {
     const { src } = event.currentTarget.dataset
-    // let audioContext = wx.createInnerAudioContext()
-    // audioContext.src = src
-    // audioContext.play()
-
-    // audioContext.onPlay(() => {
-    //   audioContext.onTimeUpdate(res => {
-    //     console.log('audioContext.duration', res)
-    //   })
-    // })
-    console.log('event', event, src);
+    console.log('event', event, src)
     innerAudioContext.src = src
     innerAudioContext.play(() => {
       console.log('开始播放')

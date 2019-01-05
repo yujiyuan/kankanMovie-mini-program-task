@@ -1,8 +1,13 @@
 <!--pages/user/user.wxml-->
 <block wx:if="{{userInfo}}">
         <view class="user-page">
-        <view class="collection-film-review">
-            <text>收藏的影评</text>
+        <view class="collection-film-review" bind:tap="onTapChange">
+            <block wx:if="{{isCollection}}">
+                <text>收藏的影评</text>
+            </block>
+            <block wx:else>
+                <text>发布的影评</text>
+            </block>
             <text class="fa fa-angle-down"></text>
         </view>
         <scroll-view class="film-review-list" scroll-y="{{true}}">
