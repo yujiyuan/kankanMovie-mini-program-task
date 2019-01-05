@@ -1,13 +1,23 @@
 <!--pages/recommend/recommend.wxml-->
 <view class="recommend-pages">
-    <view class="movie-poster">
+    <block wx:if="{{randomViewFilm}}">
+        <view class="movie-poster">
         <image class="poster-img" src="{{randomViewFilm.image}}" data-id="{{randomViewFilm.id}}" bind:tap="onTapToDetail"></image>
         <view class="poster-text">{{randomViewFilm.title}}</view>
-        <view class="recommend-person">
-            <image class="avatar" src="{{userInfo.avatarUrl}}" bind:tap="onTapToFilmReviewDetail"  data-id="{{randomViewFilm.id}}"></image>
-            <text>{{userInfo.nickName}}给你推荐了一部电影</text>
+        <block wx:if="{{reviewDetail}}">
+            <!-- 这里进行判断，如果没有影评内容，则不展示推荐人 -->
+            <view class="recommend-person"   bind:tap="onTapToFilmReviewDetail"  data-id="{{randomViewFilm.id}}">
+            <image class="avatar" src="{{reviewDetail.avatar}}"></image>
+            <text>{{reviewDetail.userName}}给你推荐了一部电影</text>
         </view>
+        </block>
     </view>
+    </block>
+    <block wx:else>
+        <view   class="movie-poster">
+                        <view class="poster-text">暂时没有推荐的电影，快去热门中找找吧~~</view>
+        </view>
+    </block>
     <view class="bottom-navigation">
         <view class="popular" bind:tap="onTapToPopular">
             <text class="fa fa-thumbs-o-up"></text>

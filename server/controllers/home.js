@@ -55,7 +55,6 @@ module.exports = {
   reviewDetail: async ctx => {
     let user = ctx.state.$wxInfo.userinfo.openId;
     let { review_id, isIndexGetInto, id } = ctx.request.query;
-    id = 14;
     if (isIndexGetInto) {
       ctx.state.data = await DB.query(
         `SELECT * FROM reviewList WHERE id = "${id}" AND user = "${user}"  ORDER BY create_time DESC LIMIT 1;`

@@ -112,6 +112,8 @@ Page({
    */
   onTapToFilmReview(event) {
     //todo:这边不知道为什么会发起两次请求。login和uploadReview各两次
+    //关于这个发起两次请求的问题好象是因为后台报错导致。不使用接口的话不会发起请求两次了。
+    //另外关于雷同的问题，前两天有人在github上fock了我的这个项目，不知道是不是这个原因。。。
     const { userInfo, tempFilePath, filmDetail, duration } = this.data;
     const { nickName } = userInfo;
     console.log("content", event);
