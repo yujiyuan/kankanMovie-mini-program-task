@@ -68,6 +68,9 @@ Page({
       url: config.service.getReviewList,
       login: true,
       method: 'GET',
+      data: {
+        userId: this.data.userInfo.openId
+      },
       success: response => {
         const { data } = response.data
         console.log(data)
@@ -119,6 +122,17 @@ Page({
       console.log(res.errMsg)
       console.log(res.errCode)
     })
+  },
+  /**
+   * 点击跳转到影评详情页
+   */
+  onTapToFilmReviewDetail(event) {
+   
+    const { id } = event.currentTarget.dataset
+    wx.navigateTo({
+      url: `/pages/filmReviewDetail/filmReviewDetail?id=${id}&isIndexGetInto=false`
+    })
+    
   },
   /**
    * 点击回到首页

@@ -62,7 +62,19 @@ router.get(
   validationMiddleware,
   controllers.home.collectionList
 )
-//判断用户是否披露过该电影
-router.get('/isCollection', validationMiddleware, controllers.home.isCollection)
+//判断用户是否评论过该电影
+router.get('/isCollection', validationMiddleware, controllers.home.isReview)
+//判断用户是否收藏过该影评
+router.get(
+  '/isCollectionReview',
+  validationMiddleware,
+  controllers.home.isCollectionReview
+)
+//判断用户是否收藏过该影评
+router.post(
+  '/deleteCollectionReview',
+  validationMiddleware,
+  controllers.home.deleteCollectionReview
+)
 
 module.exports = router;

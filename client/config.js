@@ -44,7 +44,11 @@ var config = {
     //获取影评
     getCollectionReviews: `${host}/weapp/getCollectionReviews`,
     //用户是否评论过该电影
-    isCollection: `${host}/weapp/isCollection`
+    isCollection: `${host}/weapp/isCollection`,
+    //是否收藏过该影评
+    isCollectionReview: `${host}/weapp/isCollectionReview`,
+    //取消收藏
+    deleteCollectionReview: `${host}/weapp/deleteCollectionReview`
   }
 }
 

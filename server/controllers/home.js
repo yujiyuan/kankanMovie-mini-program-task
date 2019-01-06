@@ -17,19 +17,19 @@ module.exports = {
     let content = ctx.request.body.content || null
     let tempFilePath = ctx.request.body.tempFilePath || null
     let duration = ctx.request.body.duration || 0
-    // let audio = ctx.request.body.audio || null
-    // let userName = ctx.request.body.userName || null;
+    let image = ctx.request.body.image || null
+    let title = ctx.request.body.title || null
     // let duration = ctx.request.body.duration || null
     try {
-      await DB.query(
-        `INSERT  INTO reviewList (id, user, userName, avatar, content, tempFilePath,duration) VALUES (${id},
+      await DB.query(`INSERT  INTO reviewList (id, user, userName, avatar, content, tempFilePath,duration,title,image) VALUES (${id},
         "${user}",
         "${userName}",
         "${avatar}",
         "${content}",
         "${tempFilePath}",
-        "${duration}")`
-      )
+        "${duration}",
+        "${title}",
+        "${image}")`)
       // await DB.query('INSERT  INTO reviewList comment(id, user, userName, avatar, content, tempFilePath) VALUES ("","","","","","")', [id, user, userName, avatar, content, tempFilePath]);
       ctx.state.data = {
         status: true
@@ -45,8 +45,11 @@ module.exports = {
    * 获取影评列表
    */
   reviewList: async ctx => {
-    let userId = ctx.state.$wxInfo.userinfo.openId
-    let { isLatestReview, id } = ctx.request.query
+    // let userId = ctx.state.$wxInfo.userinfo.openId
+    /**
+     * 这边本意是根据用户中心页面传进来的用户ID来获取用户发布的影评的。前面有点懵，瞎改了。。。。
+     */
+    let { isLatestReview, id, userId } = ctx.request.query
     let sql = `SELECT * FROM reviewList WHERE id = "${id}";`
     if (!!isLatestReview) {
       sql = `SELECT * FROM reviewList WHERE id = "${id}" ORDER BY create_time DESC LIMIT 1;`
@@ -63,7 +66,7 @@ module.exports = {
   reviewDetail: async ctx => {
   
     let { review_id, isIndexGetInto, id } = ctx.request.query
-    if (isIndexGetInto !== "false") {
+    if (isIndexGetInto === "true") {
       ctx.state.data = await DB.query(
         `SELECT * FROM reviewList WHERE id = "${id}"   ORDER BY create_time DESC LIMIT 1;`
       )
@@ -120,12 +123,27 @@ module.exports = {
   /**
    * 判断用户是否已经评论过该电影
    */
-  isCollection:async ctx=>{
+  isReview:async ctx=>{
     
     let id = ctx.request.query.id;
     let user = ctx.state.$wxInfo.userinfo.openId;
     ctx.state.data = await DB.query(
       `SELECT * FROM reviewList WHERE id = "${id}" AND user = "${user}" ;`
     )
+  },
+    /**
+   * 判断用户是否已经收藏过该影评
+   */
+  isCollectionReview: async ctx => {
+
+    let movie_id = ctx.request.query.movie_id
+    ctx.state.data = await DB.query(`SELECT * FROM collectionReviews WHERE movie_id = "${movie_id}"  ;`)
+  },
+  /**
+  * 删除收藏的影评
+  */
+  deleteCollectionReview: async ctx => {
+    let id = ctx.request.query.id;
+    ctx.state.data = await DB.query(`DELETE * FROM collectionReviews WHERE movie_id = "${id}"  ;`)
   }
 }

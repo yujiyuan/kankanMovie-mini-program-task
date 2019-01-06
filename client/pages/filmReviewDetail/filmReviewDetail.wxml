@@ -27,7 +27,7 @@
         <view class="film-review-btns">
             <button bind:tap="onTapCollection">
                 <i class="fa fa-star"></i>
-                收藏影评
+                {{isCancel?"取消收藏":"收藏影评"}}
             </button>
             <button bind:tap="onTapWrite" data-id="{{reviewDetail.id}}">
                 <i class="fa fa-pencil"></i>

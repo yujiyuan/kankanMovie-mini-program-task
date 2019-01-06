@@ -84,30 +84,31 @@ Page({
     qcloud.request({
       url: config.service.uploadReview,
       login: true,
-      method: "POST",
+      method: 'POST',
       data: {
         id: id,
         content: content,
         userName: nickName,
         tempFilePath,
-        duration
+        duration,
+        image: filmDetail.image, title: filmDetail.title
       },
       success: result => {
-        wx.hideLoading();
+        wx.hideLoading()
         wx.navigateTo({
           url: `/pages/filmReviewList/filmReviewList?id=${filmDetail.id}`
-        });
+        })
       },
       fail: () => {
-        wx.hideLoading();
+        wx.hideLoading()
         wx.showToast({
-          icon: "none",
-          title: "发表评论失败"
-        });
+          icon: 'none',
+          title: '发表评论失败'
+        })
       },
       complete: () => {
-        wx.hideLoading();
+        wx.hideLoading()
       }
-    });
+    })
   }
 });

@@ -1,17 +1,71 @@
-CREATE TABLE `collectionReviews` (
-  `id` int(11) NOT NULL AUTO_INCREMENT,
-  `movie_id` int(11)  NULL,
-  `duration` int(11)  NULL,
-  `title` varchar(255)  NULL,
-  `image` varchar(255)  NULL,
+-- phpMyAdmin SQL Dump
+-- version 4.7.0
+-- https://www.phpmyadmin.net/
+--
+-- Host: localhost
+-- Generation Time: 2019-01-06 08:30:35
+-- 服务器版本： 5.7.18
+-- PHP Version: 5.6.30
+
+SET SQL_MODE
+= "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT
+= 0;
+START TRANSACTION;
+SET time_zone
+= "+00:00";
+
+
+/*!40101 SET @OLD_CHARACTER_SET_CLIENT=@@CHARACTER_SET_CLIENT */;
+/*!40101 SET @OLD_CHARACTER_SET_RESULTS=@@CHARACTER_SET_RESULTS */;
+/*!40101 SET @OLD_COLLATION_CONNECTION=@@COLLATION_CONNECTION */;
+/*!40101 SET NAMES utf8mb4 */;
+
+--
+-- Database: `cAuth`
+--
+
+-- --------------------------------------------------------
+
+--
+-- 表的结构 `collectionReviews`
+--
+
+CREATE TABLE `collectionReviews`
+(
+  `movie_id` int
+(11) NOT NULL,
+  `title` varchar
+(255) DEFAULT NULL,
+  `image` varchar
+(255) DEFAULT NULL,
   `create_time` datetime NOT NULL DEFAULT CURRENT_TIMESTAMP,
-  `userName` varchar(255)  NULL,
-  `content` varchar(255)  NULL,
-  `user` varchar(255)  NULL,
-  `tempFilePath` varchar(255)  NULL,
-  `avatar` varchar(255)  NULL,
-  PRIMARY KEY (`id`)
+  `userName` varchar
+(255) DEFAULT NULL,
+  `content` varchar
+(255) DEFAULT NULL,
+  `user` varchar
+(255) DEFAULT NULL,
+  `tempFilePath` varchar
+(255) DEFAULT NULL,
+  `avatar` varchar
+(255) DEFAULT NULL,
+  `duration` int
+(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8;
 
-SET @IMAGE_BASE_URL = "https://kankanmovie-1257514261.cos.ap-guangzhou.myqcloud.com/"; -- FOR EXAMPLE: https://*****.ap-shanghai.myqcloud.com/
+--
+-- Indexes for dumped tables
+--
 
+--
+-- Indexes for table `collectionReviews`
+--
+ALTER TABLE `collectionReviews`
+ADD PRIMARY KEY
+(`movie_id`);
+COMMIT;
+
+/*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
+/*!40101 SET CHARACTER_SET_RESULTS=@OLD_CHARACTER_SET_RESULTS */;
+/*!40101 SET COLLATION_CONNECTION=@OLD_COLLATION_CONNECTION */;
