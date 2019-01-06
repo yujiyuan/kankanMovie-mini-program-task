@@ -14,7 +14,7 @@
             <block wx:for="{{collectionReviewsList}}" wx:key="{{index}}">
                 <view class="film-review-item">
                 <image class="film-review-img" src="{{item.image}}"></image>
-                <view class="film-review-info"   bind:tap="onTapToFilmReviewDetail" data-id="{{item.id||item.movie_id }}">
+                <view class="film-review-info"   bind:tap="onTapToFilmReviewDetail" data-id="{{item.id }}" data-movieId="{{item.movie_id}}">
                     <view class="film-name">{{item.title}}</view>
                     <view class="film-review-audio">
                         

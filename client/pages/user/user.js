@@ -128,9 +128,10 @@ Page({
    */
   onTapToFilmReviewDetail(event) {
    
-    const { id } = event.currentTarget.dataset
+    const { id,movieid } = event.currentTarget.dataset;
+    const newId = movieid ? movieid:id;
     wx.navigateTo({
-      url: `/pages/filmReviewDetail/filmReviewDetail?id=${id}&isIndexGetInto=false`
+      url: `/pages/filmReviewDetail/filmReviewDetail?id=${newId}&isIndexGetInto=false`
     })
     
   },

@@ -81,9 +81,9 @@ module.exports = {
    * 收藏影评
    */
   collectionReviews: async ctx => {
-    let user = ctx.state.$wxInfo.userinfo.openId
-    let userName = ctx.state.$wxInfo.userinfo.nickName
-    let avatar = ctx.state.$wxInfo.userinfo.avatarUrl
+    // let user = ctx.state.$wxInfo.userinfo.openId
+    // let userName = ctx.state.$wxInfo.userinfo.nickName
+    // let avatar = ctx.state.$wxInfo.userinfo.avatarUrl
 
     let movie_id = ctx.request.body.movie_id
     let image = ctx.request.body.image
@@ -91,9 +91,13 @@ module.exports = {
     let content = ctx.request.body.content || null
     let tempFilePath = ctx.request.body.tempFilePath || null
     let duration = ctx.request.body.duration || 0
+    let user = ctx.request.body.openId || ""
+    let avatar = ctx.request.body.avatar || ""
+    let userName = ctx.request.body.userName || ""
+    let reviewUserId = ctx.request.body.reviewUserId || ''
     try {
       await DB.query(
-        'INSERT IGNORE  INTO collectionReviews (movie_id,title,image, userName,  content, user, tempFilePath ,avatar,duration) VALUES (?,?,?,?,?,?,?,?,?)',
+        'INSERT IGNORE  INTO collectionReviews (movie_id,title,image, userName,  content, user, tempFilePath ,avatar,duration,review_user_id) VALUES (?,?,?,?,?,?,?,?,?,?)',
         [
           movie_id,
           title,
@@ -103,7 +107,7 @@ module.exports = {
           user,
           tempFilePath,
           avatar,
-          duration
+          duration, reviewUserId
         ]
       )
       ctx.state.data = {
@@ -143,7 +147,13 @@ module.exports = {
   * 删除收藏的影评
   */
   deleteCollectionReview: async ctx => {
-    let id = ctx.request.query.id;
-    ctx.state.data = await DB.query(`DELETE * FROM collectionReviews WHERE movie_id = "${id}"  ;`)
+    let id = ctx.request.body.movie_id
+    let reviewUserId = ctx.request.body.reviewUserId
+    let openId = ctx.request.body.openId
+    ctx.state.data = await DB.query(`DELETE * FROM collectionReviews WHERE movie_id = "${id}" AND  review_user_id="${reviewUserId}" AND user="${openId}" ;`)
+    // ctx.state.data = await DB.query(
+    //   'DELETE  INTO  collectionReviews (movie_id,user,review_user_id) VALUES (?,?,?)',
+    //   [id, openId, reviewUserId]
+    // )
   }
 }

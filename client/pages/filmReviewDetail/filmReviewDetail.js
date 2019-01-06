@@ -12,7 +12,8 @@ Page({
   data: {
     filmDetail: null,
     reviewDetail: null,
-    isCancel:false
+    isCancel: false,
+    userInfo:null
   },
 
   /**
@@ -20,6 +21,13 @@ Page({
    */
   onLoad: function(options) {
     const that = this
+    app.checkSession({
+      // 获取用户信息
+      success: ({ userInfo }) => {
+        wx.hideLoading()
+        this.setData({ userInfo })
+      }
+    })
     util.getFilmDetail({
       // 设置电影详情
       id: options.id,
@@ -129,9 +137,10 @@ Page({
    */
   onTapCollection() {
     wx.showLoading({ title: '收藏中' })
-    const { filmDetail, reviewDetail, isCancel } = this.data
+    const { filmDetail, reviewDetail, isCancel, userInfo } = this.data
     const { id, title, image } = filmDetail
-    const { content, tempFilePath, duration } = reviewDetail
+    const { content, tempFilePath, duration, user} = reviewDetail
+    const { nickName, avatarUrl, openId } = userInfo
     console.log(filmDetail, reviewDetail)
     if (!isCancel) {
       qcloud.request({
@@ -144,7 +153,11 @@ Page({
           image,
           content,
           tempFilePath,
-          duration
+          duration,
+          reviewUserId: user,
+          userName: nickName,
+          avatar: avatarUrl,
+          openId
         },
         success: response => {
           const { data } = response.data
@@ -168,7 +181,9 @@ Page({
         login: true,
         method: 'POST',
         data: {
-          movie_id: id
+          movie_id: id,
+          reviewUserId: user,
+          openId
         },
         success: response => {
           const { data } = response.data
