@@ -38,7 +38,7 @@ Page({
    */
   onTapChange(event){
     const { isCollection } = this.data;
-    if (isCollection){
+    if (!isCollection){
       this.getCollectionReviewsList()
     }else {
       this.getReviewList()
@@ -63,7 +63,7 @@ Page({
    * 获取发布的影评列表
    */
   getReviewList(callback) {
-    wx.showLoading({ title: '正在获取收藏列表' })
+    wx.showLoading({ title: '正在获取已发布列表' })
     qcloud.request({
       url: config.service.getReviewList,
       login: true,

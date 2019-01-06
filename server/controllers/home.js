@@ -45,7 +45,8 @@ module.exports = {
    * 获取影评列表
    */
   reviewList: async ctx => {
-    let { isLatestReview, id,userId } = ctx.request.query
+    let userId = ctx.state.$wxInfo.userinfo.openId
+    let { isLatestReview, id } = ctx.request.query
     let sql = `SELECT * FROM reviewList WHERE id = "${id}";`
     if (!!isLatestReview) {
       sql = `SELECT * FROM reviewList WHERE id = "${id}" ORDER BY create_time DESC LIMIT 1;`
@@ -60,11 +61,11 @@ module.exports = {
    * 获取影评详情
    */
   reviewDetail: async ctx => {
-    let user = ctx.state.$wxInfo.userinfo.openId
+  
     let { review_id, isIndexGetInto, id } = ctx.request.query
-    if (isIndexGetInto) {
+    if (isIndexGetInto !== "false") {
       ctx.state.data = await DB.query(
-        `SELECT * FROM reviewList WHERE id = "${id}" AND user = "${user}"  ORDER BY create_time DESC LIMIT 1;`
+        `SELECT * FROM reviewList WHERE id = "${id}"   ORDER BY create_time DESC LIMIT 1;`
       )
     } else {
       ctx.state.data = await DB.query(
@@ -113,12 +114,14 @@ module.exports = {
    * 获取影评
    */
   collectionList: async ctx => {
-    ctx.state.data = await DB.query('SELECT * FROM `collectionReviews`;')
+    let user = ctx.state.$wxInfo.userinfo.openId
+    ctx.state.data = await DB.query(`SELECT * FROM collectionReviews WHERE  user = "${user}" ;`)
   },
   /**
-   * 判断用户是否已经披露过该电影
+   * 判断用户是否已经评论过该电影
    */
   isCollection:async ctx=>{
+    
     let id = ctx.request.query.id;
     let user = ctx.state.$wxInfo.userinfo.openId;
     ctx.state.data = await DB.query(
