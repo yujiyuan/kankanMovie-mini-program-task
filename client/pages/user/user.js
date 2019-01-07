@@ -31,7 +31,9 @@ Page({
         this.setData({ userInfo })
       }
     })
-    this.getCollectionReviewsList()
+    this.data.isCollection 
+          ? this.getCollectionReviewsList()
+          : this.getReviewList()
   },
   /**
    * 点击切换展示发布和收藏的影评列表
